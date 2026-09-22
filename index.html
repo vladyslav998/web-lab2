@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Лабораторна робота №2</title>
+
+    <style>
+      :root {
+        --bg-main: #0f1117;
+        --bg-card: #181b24;
+        --text-main: #e6e8ee;
+        --text-muted: #9da3b4;
+        --accent: #7c9cff;
+        --radius: 12px;
+        --space: 16px;
+        --font: Arial, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg-main);
+        color: var(--text-main);
+        font-family: var(--font);
+        line-height: 1.5;
+      }
+
+      main {
+        width: min(900px, 100% - 32px);
+        margin: 0 auto;
+        padding: 48px 0;
+      }
+
+      header {
+        margin-bottom: 32px;
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+      }
+
+      header p {
+        margin: 0;
+        color: var(--text-muted);
+      }
+
+      .links {
+        display: grid;
+        gap: var(--space);
+      }
+
+      .link-card {
+        display: block;
+        padding: 24px;
+        border: 1px solid #2a2e3a;
+        border-radius: var(--radius);
+        background: var(--bg-card);
+        color: var(--text-main);
+        text-decoration: none;
+        transition:
+          border-color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .link-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+      }
+
+      .link-card h2 {
+        margin: 0 0 8px;
+        color: var(--accent);
+      }
+
+      .link-card p {
+        margin: 0;
+        color: var(--text-muted);
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <header>
+        <h1>Лабораторна робота №2</h1>
+        <p>Web Development — HTML та CSS</p>
+      </header>
+
+      <section aria-labelledby="sections-title">
+        <h2 id="sections-title">Розділи роботи</h2>
+
+        <div class="links">
+          <a class="link-card" href="experiments.html">
+            <h2>Дослідницька частина</h2>
+            <p>
+              Експерименти з CSS: Box Model, Cascade, Specificity, Inheritance, Variables та DRY.
+            </p>
+          </a>
+
+          <a class="link-card" href="pricing-card.html">
+            <h2>Практична частина</h2>
+            <p>Секція тарифних планів Basic, Pro та Enterprise.</p>
+          </a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

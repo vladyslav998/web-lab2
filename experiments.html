@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Експерименти CSS — ЛР-2</title>
+    <link rel="stylesheet" href="experiments.css" />
+    <style>
+      /* ===== CSS Variables (темна тема) ===== */
+      :root {
+        --bg-main: #0f1115;
+        --bg-card: #1a1d24;
+        --bg-code: #12151c;
+        --text-main: #e6e8ec;
+        --text-muted: #a0a5b0;
+        --accent: #f06292;
+        --accent-2: #ba68c8;
+        --border: #2a2f3a;
+        --danger: #ff6b6b;
+        --warning: #ffd166;
+        --radius: 12px;
+        --space: 1.25rem;
+        --font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--font);
+        background: var(--bg-main);
+        color: var(--text-main);
+        line-height: 1.6;
+        padding: 2rem 1rem;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin-top: 0;
+        color: var(--accent);
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .experiment {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: var(--space);
+        margin-bottom: 2rem;
+      }
+
+      .experiment h2 {
+        margin-bottom: 0.75rem;
+        font-size: 1.25rem;
+      }
+
+      .demo-zone {
+        background: var(--bg-code);
+        border: 1px dashed #504120;
+        border-radius: 8px;
+        padding: 1rem;
+        margin: 1rem 0;
+      }
+
+      .observation {
+        margin-top: 1rem;
+        padding: 0.9rem 1rem;
+        background: rgba(108, 158, 255, 0.08);
+        border-left: 3px solid var(--accent);
+        border-radius: 0 8px 8px 0;
+        color: var(--text-muted);
+        font-size: 0.95rem;
+      }
+
+      .observation strong {
+        color: var(--text-main);
+      }
+
+      code {
+        background: #2a2f3a;
+        padding: 0.15em 0.4em;
+        border-radius: 4px;
+        font-size: 0.9em;
+      }
+
+      .images {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin: 1.25rem 0;
+      }
+
+      .images figure {
+        margin: 0;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .images img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .images figcaption {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        border-top: 1px solid var(--border);
+      }
+
+      /* --- 1. Box Model -- */
+
+      .box {
+        width: 200px;
+        height: 100px;
+        padding: 20px;
+        border: 5px solid #7b7b7b;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+      }
+
+      .content-box {
+        box-sizing: content-box;
+        background: rgba(255, 107, 107, 0.15);
+      }
+
+      .border-box {
+        box-sizing: border-box;
+        background: rgba(126, 231, 135, 0.15);
+      }
+
+      /* --- 2. cascade --- */
+      .cascade-demo {
+        color: var(--accent);
+      }
+      .cascade-demo {
+        color: var(--accent-2);
+      }
+
+      /* --- 3. Specificity --- */
+
+      #spec-id {
+        color: var(--warning);
+      }
+
+      .class1.class2.class3.class4.class5 {
+        color: var(--accent);
+      }
+
+      /* --- 4. Inheritance --- */
+
+      .inherit-link {
+        color: inherit;
+      }
+
+      .inherit-demo button {
+        font-family: inherit;
+      }
+
+      /* --- 5. CSS Variables --- */
+
+      .card {
+        padding: 1.2rem;
+        border-radius: var(--radius);
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        color: var(--text-main);
+      }
+
+      .dark-card {
+        --bg-card: #0d1117;
+        --text-main: #7ee787;
+        --border: #238636;
+      }
+
+      /* --- 6. Повторне використання стилів і рефакторинг --- */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.55rem 1.1rem;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        background: var(--bg-card);
+        color: var(--text-main);
+        font-family: inherit;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: 0.15s ease;
+      }
+
+      .btn:active {
+        transform: scale(0.97);
+      }
+
+      .btn:hover {
+        border-color: var(--accent);
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--bg-main);
+      }
+
+      .btn-outline {
+        background: transparent;
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <h1>Експерименти CSS</h1>
+      <p style="color: var(--text-muted)">
+        Лабораторна робота №2. Box Model, Cascade, Specificity, Inheritance, CSS Variables
+      </p>
+
+      <!-- Тут будуть усі експерименти -->
+      <section class="experiment">
+        <h2>Box Model</h2>
+        <p>
+          Два блоки з однаковою <code>width: 200px</code> і <code>height: 100px</code>, padding і
+          border. Один — <code>content-box</code>, другий — <code>border-box</code>.
+        </p>
+
+        <div class="demo-zone" style="display: flex; gap: 1.5rem; flex-wrap: wrap">
+          <div class="box content-box">content-box</div>
+          <div class="box border-box">border-box</div>
+        </div>
+
+        <div class="observation">
+          <strong>Спостереження:</strong><br />
+          У <code>content-box</code> padding і border додаються до основного розміру, тому блок стає
+          більшим.<br />
+          У <code>border-box</code> padding і border входять у задані 200px, тому фактичний розмір
+          залишається 200px. <br />
+        </div>
+      </section>
+
+      <section class="experiment">
+        <h2>Cascade</h2>
+        <p>
+          Один елемент отримує колір трьома правилами з однаковою специфічністю, але в різному
+          порядку.
+        </p>
+
+        <div class="demo-zone">
+          <p class="cascade-demo">Цей текст змінює колір залежно від порядку правил</p>
+        </div>
+
+        <div class="observation">
+          <strong>Спостереження:</strong><br />
+          Перемагає правило, яке йде останнім у CSS. Якщо змінити порядок підключення або порядок
+          оголошення класів — переможе нове останнє правило.
+        </div>
+      </section>
+
+      <section class="experiment">
+        <h2>Specificity</h2>
+        <p>Спробуємо «перебити» ID ланцюжком класів.</p>
+
+        <div class="demo-zone">
+          <p id="spec-id" class="class1 class2 class3 class4 class5">
+            Текст з ID і багатьма класами
+          </p>
+        </div>
+
+        <div class="observation">
+          <strong>Спостереження:</strong><br />
+
+          <div class="images">
+            <figure>
+              <img src="attachment/Specificity1.jpg" alt="Скріншот Styles ID" />
+              <figcaption>Styles – ID</figcaption>
+            </figure>
+            <figure>
+              <img src="attachment/Specificity2.jpg" alt="Скріншот Styles clss" />
+              <figcaption>Styles – class</figcaption>
+            </figure>
+          </div>
+
+          Специфічність рахується як (ID, class, type):
+          <ul>
+            <li><code>p</code> → (0,0,1)</li>
+            <li><code>.class1</code> → (0,1,0)</li>
+            <li><code>#spec-id</code> → (1,0,0)</li>
+          </ul>
+          Навіть 5 класів (.class1.class2…) дають (0,5,0) — це менше, ніж один ID (1,0,0). Тому ID
+          завжди перемагає. <br />
+          <strong>Висновок:</strong> ID має найвищу специфічність серед звичайних селекторів. Краще
+          уникати ID у стилях.
+        </div>
+      </section>
+
+      <section class="experiment">
+        <h2>Inheritance</h2>
+        <p>
+          На <code>body</code> задано <code>font-family</code> і <code>color</code>. Дивимось, що
+          успадковується.
+        </p>
+
+        <div class="demo-zone inherit-demo">
+          <p>Звичайний параграф (успадковує)</p>
+          <a href="#">Посилання (не успадковує color)</a><br /><br />
+          <button>Кнопка (не успадковує)</button>
+          <p>
+            <a href="#" class="inherit-link">Посилання з color: inherit</a>
+          </p>
+        </div>
+
+        <div class="observation">
+          <strong>Спостереження:</strong><br />
+          <code>font-family</code> і <code>color</code> успадковуються в <code>&lt;p&gt;</code>.
+          <code>&lt;a&gt;</code> і <code>&lt;button&gt;</code> мають свої user-agent стилі, тому
+          колір не успадковується. Щоб змусити успадкувати — використовуємо
+          <code>color: inherit</code>. <br />
+          <strong>Висновок:</strong> Не всі властивості успадковуються.
+        </div>
+      </section>
+
+      <section class="experiment">
+        <h2>CSS Variables (Custom Properties)</h2>
+        <p>Змінні оголошені в <code>:root</code>. Усередині картки їх перевизначаємо.</p>
+
+        <div class="demo-zone">
+          <div class="card">Звичайна картка (використовує :root)</div>
+          <div class="card dark-card" style="margin-top: 1rem">.dark-card (локальні змінні)</div>
+        </div>
+
+        <div class="observation">
+          <strong>Спостереження:</strong><br />
+          Змінні в <code>:root</code> доступні всюди. Коли ми перевизначаємо їх всередині
+          <code>.dark-card</code>, область видимості стає локальною — тільки для цього елемента і
+          його нащадків. <br />
+          <strong>Висновок:</strong> Це ідеальний спосіб робити теми і стани компонентів без
+          дублювання коду.
+        </div>
+      </section>
+
+      <section class="experiment">
+        <h2>Повторне використання стилів (утилітарні / компонентні класи)</h2>
+        <p>Базовий клас <code>.btn</code> + модифікатори.</p>
+
+        <div class="demo-zone" style="display: flex; gap: 0.75rem; flex-wrap: wrap">
+          <button class="btn">Звичайна</button>
+          <button class="btn btn-primary">Primary</button>
+          <button class="btn btn-outline">Outline</button>
+        </div>
+
+        <div class="observation">
+          <strong>Спостереження:</strong><br />
+          Компонентний підхід <code>.btn</code> + модифікатори зменшує дублювання, робить CSS легшим
+          для підтримки і зменшує розмір файлу. Замість унікальних стилів для кожної кнопки ми
+          перевикористовуємо спільну базу.
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
